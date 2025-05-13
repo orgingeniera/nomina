@@ -39,7 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Empleados::find()->all(), 'id', 'nombre_completo'),
             ],
             'fecha_contratacion',
-            'departamento',
+            [
+                'attribute' => 'departamento_id',
+                'label' => 'Departamento', // Cambiar el nombre de la columna
+                'value' => function ($model) {
+                    return $model->departamento ? $model->departamento->nombre : 'Sin departamento';
+                },
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Departamento::find()->all(), 'id', 'nombre'),
+            ],
             'cargo',
             //'tipo_contrato',
             //'salario_base',

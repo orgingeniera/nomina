@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\TipoContrato;
+use app\models\FrecuenciaPago;
+use app\models\HorarioTrabajo;
 use yii\helpers\ArrayHelper;
 /** @var yii\web\View $this */
 /** @var app\models\EmpleadoDetalles $model */
@@ -22,7 +24,10 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'fecha_contratacion')->textInput(['type' => 'date']) ?>
 
-    <?= $form->field($model, 'departamento')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'departamento_id')->dropDownList(
+    \yii\helpers\ArrayHelper::map(\app\models\Departamento::find()->all(), 'id', 'nombre'),
+    ['prompt' => 'Selecciona un departamento']
+    ) ?>
 
     <?= $form->field($model, 'cargo')->textInput(['maxlength' => true]) ?>
 
@@ -33,26 +38,21 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'salario_base')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'frecuencia_pago')->dropDownList([
-        'Mensual' => 'Mensual',
-        'Quincenal' => 'Quincenal',
-        'Catorcenal' => 'Catorcenal',
-        'Semanal' => 'Semanal',
-        'Diaria' => 'Diaria',
-    ], ['prompt' => 'Seleccione una frecuencia de pago']) ?>
+    <?= $form->field($model, 'frecuencia_pago_id')->dropDownList(
+        ArrayHelper::map(FrecuenciaPago::find()->all(), 'id', 'nombre'),
+        ['prompt' => 'Seleccione una frecuencia de pago']
+    ) ?>
 
-    <?= $form->field($model, 'horario_trabajo')->dropDownList([
-        'Lunes a viernes, 8:00 AM - 5:00 PM' => 'Lunes a viernes, 8:00 AM - 5:00 PM',
-        'Lunes a sábado, 7:00 AM - 3:00 PM' => 'Lunes a sábado, 7:00 AM - 3:00 PM',
-        'Turnos rotativos' => 'Turnos rotativos',
-        'Nocturno: 10:00 PM - 6:00 AM' => 'Nocturno: 10:00 PM - 6:00 AM',
-        'Flexible' => 'Flexible',
-    ], ['prompt' => 'Seleccione un horario o escriba uno']) ?>
-<?= $form->field($model, 'eps')->dropDownList([
-    'Nueva EPS',
-    'Sura',
-    'Sanitas',
-], ['prompt' => 'Seleccione EPS', 'id' => 'eps-select']) ?>
+    <?= $form->field($model, 'horario_trabajo_id')->dropDownList(
+        ArrayHelper::map(HorarioTrabajo::find()->all(), 'id', 'nombre'),
+        ['prompt' => 'Seleccione un horario']
+    ) ?>
+
+    <?= $form->field($model, 'eps')->dropDownList([
+        'Nueva EPS',
+        'Sura',
+        'Sanitas',
+    ], ['prompt' => 'Seleccione EPS', 'id' => 'eps-select']) ?>
 
     <?= $form->field($model, 'afp')->dropDownList([
         'Porvenir' => 'Porvenir',

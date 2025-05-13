@@ -58,13 +58,17 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     ['label' => 'Empleado', 'url' => ['/empleado/index']],
                     ['label' => 'Empleado detalles', 'url' => ['/empleado-detalles/index']],
                   
-                ]
+                ],
+                'visible' => !Yii::$app->user->isGuest,
             ],
             ['label' => 'Configuraciones', 'url' => ['/empleado/index'], 'linkOptions' => ['class' => 'nav-link'],
                 'items' => [
                     ['label' => 'Tipo contrato', 'url' => ['/tipo-contrato/index']],
-                  
-                ]
+                    ['label' => 'Departamento', 'url' => ['/departamento/index']],
+                    ['label' => 'Horario de trabajo', 'url' => ['/horario-trabajo/index']],
+                    ['label' => 'Dias Trabajo', 'url' => ['/horario-dia/index']],
+                ],
+                'visible' => !Yii::$app->user->isGuest,
             ],
             /*[
                 'label' => 'Gestión',
