@@ -3,19 +3,18 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var app\models\EmpleadoDetalles $model */
+/** @var app\models\FrecuenciaPago $model */
 
-$this->title = 'Create Empleado Detalles';
-$this->params['breadcrumbs'][] = ['label' => 'Empleado Detalles', 'url' => ['index']];
+$this->title = 'Create Frecuencia Pago';
+$this->params['breadcrumbs'][] = ['label' => 'Frecuencia Pagos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="empleado-detalles-create">
+<div class="frecuencia-pago-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-     
     ]) ?>
 
 </div>

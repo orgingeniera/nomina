@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\EmpleadoDetalles;
+use app\models\HorarioTrabajo;
 
 /**
- * EmpleadoDetallesSearch represents the model behind the search form of `app\models\EmpleadoDetalles`.
+ * HorarioTrabajoSearch represents the model behind the search form of `app\models\HorarioTrabajo`.
  */
-class EmpleadoDetallesSearch extends EmpleadoDetalles
+class HorarioTrabajoSearch extends HorarioTrabajo
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class EmpleadoDetallesSearch extends EmpleadoDetalles
     public function rules()
     {
         return [
-            [['id', 'empleado_id'], 'integer'],
-            [['fecha_contratacion', 'departamento_id ', 'cargo', 'tipo_contrato_id', 'frecuencia_pago_id', 'horario_trabajo_id', 'eps', 'afp', 'caja_compensacion', 'created_at', 'updated_at'], 'safe'],
-            [['salario_base'], 'number'],
+            [['id'], 'integer'],
+            [['nombre', 'descripcion', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class EmpleadoDetallesSearch extends EmpleadoDetalles
      */
     public function search($params, $formName = null)
     {
-        $query = EmpleadoDetalles::find();
+        $query = HorarioTrabajo::find();
 
         // add conditions that should always apply here
 
@@ -61,21 +60,12 @@ class EmpleadoDetallesSearch extends EmpleadoDetalles
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'empleado_id' => $this->empleado_id,
-            'fecha_contratacion' => $this->fecha_contratacion,
-            'salario_base' => $this->salario_base,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'departamento_id ', $this->departamento_id ])
-            ->andFilterWhere(['like', 'cargo', $this->cargo])
-            ->andFilterWhere(['like', 'tipo_contrato_id', $this->tipo_contrato_id])
-            ->andFilterWhere(['like', 'frecuencia_pago_id', $this->frecuencia_pago_id])
-            ->andFilterWhere(['like', 'horario_trabajo_id', $this->horario_trabajo_id])
-            ->andFilterWhere(['like', 'eps', $this->eps])
-            ->andFilterWhere(['like', 'afp', $this->afp])
-            ->andFilterWhere(['like', 'caja_compensacion', $this->caja_compensacion]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
 
         return $dataProvider;
     }

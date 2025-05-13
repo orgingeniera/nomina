@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\EmpleadoDetalles $model */
+/** @var app\models\HorarioTrabajo $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Empleado Detalles', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Horario Trabajos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="empleado-detalles-view">
+<div class="horario-trabajo-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,22 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'empleado_id',
-            'fecha_contratacion',
-            'departamento_id',
-            'cargo',
-            'tipo_contrato_id',
-            'salario_base',
-            'frecuencia_pago_id',
-            [
-                'attribute' => 'horario_trabajo_id',
-                'value' => function ($model) {
-                    return $model->horarioTrabajo->nombre ?? 'No asignado';
-                },
-            ],
-            'eps',
-            'afp',
-            'caja_compensacion',
+            'nombre',
+            'descripcion:ntext',
             'created_at',
             'updated_at',
         ],
